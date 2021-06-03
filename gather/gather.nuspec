@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>gather</id>
+    <version>0.0.9</version>
+    <title>gather (Install)</title>
+    <authors>michaeltlombardi</authors>
+    <projectUrl>https://github.com/gathertown/gather-town-desktop-releases/</projectUrl>
+    <packageSourceUrl>https://github.com/michaeltlombardi/chocomatic-packages/tree/main/gather</packageSourceUrl>
+    <iconUrl>https://cdn.jsdelivr.net/gh/michaeltlombardi/chocomatic-packages@main/gather/icons/icon.png</iconUrl>
+    <copyright>2020 – 2021 Gather Prescence Inc.</copyright>
+    <!-- No license listed for the software -->
+    <!-- <licenseUrl></licenseUrl> -->
+    <docsUrl>https://support.gather.town/help</docsUrl>
+    <tags>desktop gathertown video</tags>
+    <summary>Better spaces to gather around</summary>
+    <description># Better spaces to gather around.
+
+Spend time with your friends, coworkers, and communities like you would in real life.
+
+Desktop application for [gather.town](https://gather.town), a virtual spaces service with video calling, interactive maps, games, and more.</description>
+    <releaseNotes>https://github.com/gathertown/gather-town-desktop-releases/releases/tag/v0.0.9</releaseNotes>
+  </metadata>
+  <files>
+    <!-- this section controls what actually gets packaged into the Chocolatey package -->
+    <file src="tools\**" target="tools" />
+    <!--Building from Linux? You may need this instead: <file src="tools/**" target="tools" />-->
+  </files>
+</package>
