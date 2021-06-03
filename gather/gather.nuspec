@@ -5,9 +5,9 @@
     <version>0.0.9</version>
     <title>gather (Install)</title>
     <authors>michaeltlombardi</authors>
-    <projectUrl>https://github.com/gathertown/gather-town-desktop-releases/</projectUrl>
+    <projectUrl>https://gather.town/</projectUrl>
     <packageSourceUrl>https://github.com/michaeltlombardi/chocomatic-packages/tree/main/gather</packageSourceUrl>
-    <iconUrl>https://cdn.jsdelivr.net/gh/michaeltlombardi/chocomatic-packages@main/gather/icons/icon.png</iconUrl>
+    <iconUrl>https://pbs.twimg.com/profile_images/1354193582660456457/a_PW3K0v_400x400.jpg</iconUrl>
     <copyright>2020 – 2021 Gather Prescence Inc.</copyright>
     <!-- No license listed for the software -->
     <!-- <licenseUrl></licenseUrl> -->
