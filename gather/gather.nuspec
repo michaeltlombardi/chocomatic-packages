@@ -3,7 +3,7 @@
   <metadata>
     <id>gather</id>
     <version>0.0.9</version>
-    <title>gather (Install)</title>
+    <title>gather</title>
     <authors>michaeltlombardi</authors>
     <projectUrl>https://gather.town/</projectUrl>
     <packageSourceUrl>https://github.com/michaeltlombardi/chocomatic-packages/tree/main/gather</packageSourceUrl>
