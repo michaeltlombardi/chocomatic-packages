@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>gather</id>
-    <version>0.0.9</version>
+    <version>[[VERSION]]</version>
     <title>gather</title>
     <authors>michaeltlombardi</authors>
     <projectUrl>https://gather.town/</projectUrl>
@@ -19,7 +19,7 @@
 Spend time with your friends, coworkers, and communities like you would in real life.
 
 Desktop application for [gather.town](https://gather.town), a virtual spaces service with video calling, interactive maps, games, and more.</description>
-    <releaseNotes>https://github.com/gathertown/gather-town-desktop-releases/releases/tag/v0.0.9</releaseNotes>
+    <releaseNotes>https://github.com/gathertown/gather-town-desktop-releases/releases/tag/v[[VERSION]]</releaseNotes>
   </metadata>
   <files>
     <!-- this section controls what actually gets packaged into the Chocolatey package -->
