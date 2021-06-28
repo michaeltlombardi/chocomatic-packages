@@ -1,5 +1,8 @@
 [cmdletbinding()]
-Param()
+Param(
+  [switch]$Publish,
+  [switch]$ValidateInstall
+)
 
 Write-Verbose 'Fetching latest release information from Github'
 
@@ -62,8 +65,17 @@ if ([version]$($CurrentVersion.Version) -lt $Version) {
   Write-Verbose 'Packing the package'
   choco pack $Nuspec --output-directory="$OutputDirectory"
 
-  Write-Verbose 'Validate nupkg is correct and push'
-  $Package = Get-ChildItem -Path $OutputDirectory -Filter gather.*.nupkg
+  $Package = Get-ChildItem -Path $OutputDirectory -Filter 'gather.*.nupkg'
   | Select-Object -ExpandProperty FullName
-  choco push $Package -s https://push.chocolatey.org --api-key="'$env:CHOCOLATEY_TOKEN'"
+
+  If ($ValidateInstall) {
+    Write-Verbose 'Validating nupkg is correct by installing locally'
+    choco install $Package -y
+    if ($LastExitCode -ne 0) { Throw 'choco install gather failed!' }
+  }
+  if ($Publish) {
+    Write-Verbose 'Publishing to Chocolatey Community Feed'
+    choco push $Package --source='https://push.chocolatey.org' --api-key="'$env:CHOCOLATEY_TOKEN'"
+    if ($LastExitCode -ne 0) { Throw "choco push $Package failed!" }
+  }
 }
