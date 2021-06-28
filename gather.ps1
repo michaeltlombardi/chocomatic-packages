@@ -11,7 +11,7 @@ $LatestRelease = Invoke-RestMethod -Uri 'https://api.github.com/repos/gathertown
 | Where-Object { $_.name -match 'exe$' }
 
 $Binary = $LatestRelease.name
-$null   = $LatestRelease.name -match '(?<version>\d+(\.\d+)+)'
+$null = $LatestRelease.name -match '(?<version>\d+(\.\d+)+)'
 $Version = $matches.version
 
 Write-Verbose "Found release for: $binary"
@@ -26,14 +26,14 @@ if ($null -eq $CurrentVersion) {
 }
 
 if ([version]$($CurrentVersion.Version) -lt $Version) {
-  $ToolsDirectory = "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
+  $ToolsDirectory = "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)"
   $OutputDirectory = "$ToolsDirectory/packages"
 
   If (-not (Test-Path -Path $OutputDirectory -PathType Container)) {
     New-Item -Path $OutputDirectory -ItemType Directory -Force
   }
 
-  $Nuspec  = Get-ChildItem $ToolsDirectory -Recurse -Filter 'gather.nuspec'
+  $Nuspec = Get-ChildItem $ToolsDirectory -Recurse -Filter 'gather.nuspec'
   | Select-Object -ExpandProperty FullName
   $Install = Get-ChildItem $ToolsDirectory -Recurse -Filter 'chocolateyInstall.ps1'
   | Where-Object { $_.Directory -match 'gather' }
