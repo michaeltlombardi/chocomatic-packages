@@ -17,8 +17,9 @@ $Version = $matches.version
 Write-Verbose "Found release for: $binary"
 Write-Verbose "Version set to: $Version"
 
-$CurrentVersion = choco list gather --exact -r -s https://chocolatey.org/api/v2
-| ConvertFrom-CSV -Delimiter '|' -Header 'Name', 'Version'
+$CurrentVersion = choco list gather --exact --limit-output --source='https://chocolatey.org/api/v2'
+if ($LastExitCode -ne 0) { Throw 'choco list gather failed!' }
+$CurrentVersion = $CurrentVersion | ConvertFrom-Csv -Delimiter '|' -Header 'Name', 'Version'
 
 if ($null -eq $CurrentVersion) {
   $CurrentVersion = [pscustomobject]@{ 'Version' = '0.0.0' }
@@ -64,6 +65,7 @@ if ([version]$($CurrentVersion.Version) -lt $Version) {
 
   Write-Verbose 'Packing the package'
   choco pack $Nuspec --output-directory="$OutputDirectory"
+  if ($LastExitCode -ne 0) { Throw 'choco pack gather failed!' }
 
   $Package = Get-ChildItem -Path $OutputDirectory -Filter 'gather.*.nupkg'
   | Select-Object -ExpandProperty FullName
