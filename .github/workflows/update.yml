@@ -1,0 +1,25 @@
+name: Update
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  Publish:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - gather
+    steps:
+      - uses: actions/checkout@v2
+      - name: PSVersion Table
+        run: $psversiontable
+      - name: Chocolatey Version
+        run: choco --version
+      - name: Build & Publish ${{ matrix.package }}
+        env:
+          CHOCOLATEY_TOKEN: ${{ secrets.CHOCOLATEY_TOKEN }}
+        run: |
+          & .\${{ matrix.package }}.ps1 -ValidateInstall -Publish -Verbose -ErrorAction Stop
